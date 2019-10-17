@@ -46,7 +46,7 @@ http POST http://localhost:8081/order orderId=987 orderPrice=100 userId=123
     "userId": 123
 }
 ```
-* Check the user list was updated correctly
+* Check the order list was updated correctly
 ```
 http http://localhost:8082/user/123
 
@@ -62,7 +62,7 @@ http http://localhost:8082/user/123
 ```
 http DELETE http://localhost:8081/order/987
 ```
-* Check the user list was updated correctly
+* Check the order list was updated correctly
 ```
 http http://localhost:8082/user/123
 
@@ -87,7 +87,7 @@ http POST http://localhost:8081/order orderId=988 orderPrice=100 userId=123
     "userId": 123
 }
 ```
-* Check the user list is not yet updated
+* Check the order list is not yet updated
 ```
 http http://localhost:8082/user/123
 
@@ -101,7 +101,7 @@ http http://localhost:8082/user/123
 ```
 mvn exec:java -Dexec.mainClass="com.redhat.debezium.MainApp"
 ```
-* Wait a few seconds the process to start up and check the user list was updated correctly
+* Wait a few seconds the process to start up and check the order list was updated correctly
 ```
 http http://localhost:8082/user/123
 
