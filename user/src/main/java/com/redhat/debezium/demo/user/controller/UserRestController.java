@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.List;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.redhat.debezium.demo.user.domain.OrderDTO;
 import com.redhat.debezium.demo.user.domain.User;
 import com.redhat.debezium.demo.user.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,9 +20,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping("user")
 public class UserRestController {
-
-    @Autowired
-    private ObjectMapper mapper;
 
     @Autowired
     private UserService userService;
@@ -49,15 +47,11 @@ public class UserRestController {
     }
 
     @PostMapping("/{userId}/order")
-    public void addOrder(@PathVariable int userId, @RequestBody String order){
-        System.out.println("addOrder("+userId+","+order+")");
-        User user = get(userId);
-        try {
-            userService.addOrder(user, mapper.readTree(order).get("orderId").asText());
-            userService.updateUser(user);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+    public void addOrder(@PathVariable int userId, @RequestBody OrderDTO order){
+        System.out.println("addOrder("+userId+","+order.getOrderId()+")");
+        User user = get(order.getUserId());
+        userService.addOrder(user, String.valueOf(order.getOrderId()));
+        userService.updateUser(user);
     }
 
     @DeleteMapping("/{userId}/order/{orderId}")
