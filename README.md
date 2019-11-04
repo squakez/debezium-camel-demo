@@ -22,7 +22,7 @@ mvn spring-boot:run
 ```
 * Assign proper privileges to debezium user. You will be required the root password stored in docker-compose configuration
 ```
-mysql --host 127.0.0.1 -u root -p -e "GRANT SELECT, RELOAD, SHOW DATABASES, REPLICATION SLAVE, REPLICATION CLIENT ON *.* TO 'debezium';"
+mysql --host 127.0.0.1 -u root -p -e "GRANT SELECT, RELOAD, SHOW DATABASES, REPLICATION SLAVE, REPLICATION CLIENT ON *.* TO 'debezium' IDENTIFIED BY 'dbz';"
 ```
 * Start camel debezium route process
 ```
