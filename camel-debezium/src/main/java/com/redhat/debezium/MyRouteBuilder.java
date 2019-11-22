@@ -9,13 +9,13 @@ import org.apache.camel.component.debezium.DebeziumConstants;
 public class MyRouteBuilder extends RouteBuilder {
 
     public void configure() {
-        from("debezium:mysql?name=my-sql-connector"
-                + "&databaseServerId=1"
-                + "&databaseHostName=localhost"
+        from("debezium-mysql:order-connector?"
+                + "databaseServerId=1"
+                + "&databaseHostname=localhost"
                 + "&databaseUser=debezium"
                 + "&databasePassword=dbz"
                 + "&databaseServerName=my-app-connector"
-                + "&databaseHistoryFileName=/tmp/dbhistory.dat"
+                + "&databaseHistoryFileFilename=/tmp/dbhistory.dat"
                 + "&databaseWhitelist=debezium"
                 + "&tableWhitelist=debezium._order"
                 + "&offsetStorageFileName=/tmp/offset.dat")
