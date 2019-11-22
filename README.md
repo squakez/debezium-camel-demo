@@ -2,7 +2,7 @@
 
 Follow these instructions to see how the changes to an Order service are propagated to a User service. User and Order are independent microservices with independent databases, no microservice business logic has been harmed during the experiments!
 
-I am using httpie as http CLI.
+I am using [httpie](https://httpie.org/) as http CLI.
 
 * Start mysql database
 ```
@@ -27,6 +27,7 @@ mysql --host 127.0.0.1 -u root -p -e "GRANT SELECT, RELOAD, SHOW DATABASES, REPL
 * Start camel debezium route process
 ```
 cd camel-debezium
+mvn clean install
 mvn exec:java -Dexec.mainClass="com.redhat.debezium.MainApp"
 ```
 * Create a user
