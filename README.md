@@ -19,21 +19,28 @@ mvn clean fabric8:deploy -P openshift
 ```
 * Create a `Debezium` integration on `Syndesis` mapping any new order creation to a user REST _addOrder_ endpoint call and any order deletion to a user REST _deleteOrder_ endpoint call. Wait for the integration to be up and running on your local openshift.
 
-_Create a debezium connection, setting kafka broker cluster URI_
+_Create a debezium connection, setting kafka broker cluster URI_\
 ![image 1](/img/1-connection.png)
-_Create a new integration with the debezium connection source: select the order table change data topic and the schema change topic_
+
+_Create a new integration with the debezium connection source: select the order table change data topic and the schema change topic_\
 ![image 2](/img/1-1-integration-subscribe.png)
-_Select a conditional flow as destination source_
+
+_Select a conditional flow as destination source_\
 ![image 3](/img/2-integration-conditional-flow.png)
-_Define the condition events you want to capture: an order create and an order delete_
+
+_Define the condition events you want to capture: an order create and an order delete_\
 ![image 4](/img/3-conditions.png)
-_Conditions will look like these:_
+
+_Conditions will look like these:_\
 ![image 5](/img/4-conditions-set.png)
-_Select the create condition branch_
+
+_Select the create condition branch_\
 ![image 6](/img/5-create-condition.png)
-_Set the action to perform when a new order is created: call the User REST API_
+
+_Set the action to perform when a new order is created: call the User REST API_\
 ![image 7](/img/6-user-api-addorder.png)
-_Finally map the data coming from change data stream to the ones expected by the REST API_
+
+_Finally map the data coming from change data stream to the ones expected by the REST API_\
 ![image 8](/img/7-data-mapping.png)
 
 You must repeat the process for the delete condition branch as well. Here I leave the [whole screencast](/img/demo-screencast.mp4) for all details.
