@@ -6,7 +6,6 @@
 	<modules>
 		<module>user</module>
 		<module>order</module>
-		<module>camel-debezium</module>
     </modules>
 	<parent>
 		<groupId>org.springframework.boot</groupId>
